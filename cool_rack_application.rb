@@ -3,7 +3,8 @@ require "rack"
 
 class CoolRackApplication
   def call(env)
-    http_verb = env["REQUEST_METHOD"]
+    request = Rack::Request.new(env)
+    http_verb = request.request_method
     status = 200
     headers = {}
     body = ["got #{http_verb} request\n"]
